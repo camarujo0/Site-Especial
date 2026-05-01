@@ -18,30 +18,28 @@ body, html {
     transition: opacity 1s ease-out;
 }
 
-/* Animações de Fade */
+/* Animações */
 .fade-in {
     opacity: 0;
     animation: fadeInAnim 2s forwards;
 }
 
+.text-principal {
+    font-size: clamp(1.8rem, 8vw, 3rem); /* Responsivo */
+    margin-bottom: 10px;
+}
+
 .text-secundario {
-    font-size: 0.9rem;
-    animation-delay: 2s; /* Aparece depois da primeira */
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    animation-delay: 2s;
 }
 
-@keyframes fadeInAnim {
-    to { opacity: 1; }
-}
+@keyframes fadeInAnim { to { opacity: 1; } }
 
-.fade-out {
-    animation: fadeOutAnim 1s forwards;
-}
+.fade-out { animation: fadeOutAnim 1s forwards; }
+@keyframes fadeOutAnim { to { opacity: 0; } }
 
-@keyframes fadeOutAnim {
-    to { opacity: 0; }
-}
-
-/* Botão Personalizado */
+/* Botão */
 .btn-custom {
     padding: 15px 30px;
     background: transparent;
@@ -50,7 +48,7 @@ body, html {
     cursor: pointer;
     font-size: 1.2rem;
     transition: 0.3s;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .btn-custom:hover {
@@ -60,11 +58,11 @@ body, html {
 
 .hide { display: none; }
 
-/* Fase 2 - Gatinhos */
+/* Fase 2 */
 #container-gatinhos img {
     position: absolute;
-    z-index: 5; /* Atrás da caixa de texto */
-    pointer-events: none; /* Impede que os gatos bloqueiem cliques */
+    z-index: 5;
+    pointer-events: none;
     animation: aparecerESumir 3s ease-in-out forwards;
 }
 
@@ -77,32 +75,34 @@ body, html {
 
 .caixa-texto {
     background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
+    padding: clamp(20px, 5vw, 40px);
     border-radius: 15px;
     backdrop-filter: blur(10px);
-    z-index: 100; /* Garante que fique acima de tudo */
+    z-index: 100;
     position: relative;
-    max-width: 80%; 
+    max-width: 85%;
     text-align: center;
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
 }
 
 .conteudo-centro {
     display: flex;
-    flex-direction: column; /* Alinha os itens em coluna */
-    align-items: center;    /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    gap: 20px;              /* Espaçamento entre os elementos */
+    width: 90%;
 }
 
 .img-fase1 {
-    width: 150px;           /* Ajuste o tamanho conforme necessário */
+    width: clamp(80px, 20vw, 150px);
     height: auto;
-    margin: 10px 0;
 }
 
-/* Garante que o botão não "pule" quando aparecer */
-.btn-custom {
-    position: relative;
-    margin-top: 30px;
+/* Ajustes Mobile */
+@media (max-width: 600px) {
+    .btn-custom {
+        width: 80%;
+        padding: 12px;
+    }
 }
