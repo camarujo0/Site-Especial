@@ -30,6 +30,16 @@ function gerarGatinhos() {
     const container = document.getElementById('container-gatinhos');
     const caixaTexto = document.querySelector('.caixa-texto');
 
+    // Define o tamanho baseado na largura da tela
+    const tamanhoGato = window.innerWidth < 768 ? 80 : 120; 
+
+    // Na hora de calcular a posição X e Y, use a variável:
+    x = Math.random() * (window.innerWidth - tamanhoGato);
+    y = Math.random() * (window.innerHeight - tamanhoGato);
+
+    // Aplique o tamanho à imagem
+    img.style.width = tamanhoGato + "px";
+
     // Lista com todos os seus arquivos da pasta
     const linksGatinhos = [
         'gato1.png', 'gato2.png', 'gato3.png', 'gato4.png', 'gato5.png',
