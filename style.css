@@ -106,3 +106,30 @@ body, html {
     position: relative;
     margin-top: 30px;
 }
+
+.text-principal {
+    font-size: clamp(1.5rem, 5vw, 3rem); /* Ajusta entre 1.5rem e 3rem conforme a tela */
+    padding: 0 20px;
+}
+
+.text-secundario {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+}
+
+/* 2. Media Query para Celulares (telas até 768px) */
+@media (max-width: 768px) {
+    .caixa-texto {
+        width: 85%; /* No celular a caixa ocupa mais espaço lateral */
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    .img-fase1 {
+        width: 100px; /* Imagem de volume menor no celular */
+    }
+
+    .btn-custom {
+        width: 80%; /* Botão maior para facilitar o toque */
+        padding: 12px;
+    }
+}
