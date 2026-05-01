@@ -30,17 +30,6 @@ function gerarGatinhos() {
     const container = document.getElementById('container-gatinhos');
     const caixaTexto = document.querySelector('.caixa-texto');
 
-    // Define o tamanho baseado na largura da tela
-    const tamanhoGato = window.innerWidth < 768 ? 80 : 120; 
-
-    // Na hora de calcular a posição X e Y, use a variável:
-    x = Math.random() * (window.innerWidth - tamanhoGato);
-    y = Math.random() * (window.innerHeight - tamanhoGato);
-
-    // Aplique o tamanho à imagem
-    img.style.width = tamanhoGato + "px";
-
-    // Lista com todos os seus arquivos da pasta
     const linksGatinhos = [
         'gato1.png', 'gato2.png', 'gato3.png', 'gato4.png', 'gato5.png',
         'gifgato1.gif', 'gifgato2.gif', 'gifgato3.gif'
@@ -49,38 +38,88 @@ function gerarGatinhos() {
     setInterval(() => {
         const img = document.createElement('img');
         
-        // Sorteia um índice da lista acima
+        // 1. Sorteia a imagem
         const indiceSorteado = Math.floor(Math.random() * linksGatinhos.length);
         img.src = linksGatinhos[indiceSorteado];
         
+        // 2. Define o tamanho adaptável (Movi para dentro do intervalo)
+        const tamanhoGato = window.innerWidth < 768 ? 80 : 120; 
+        img.style.width = tamanhoGato + "px";
+
         const rect = caixaTexto.getBoundingClientRect();
         let x, y;
         let colisao = true;
 
+        // 3. Lógica da Hitbox
         while (colisao) {
-            // Sorteia posição (ajuste 120 para o tamanho médio das suas imagens)
-            x = Math.random() * (window.innerWidth - 120);
-            y = Math.random() * (window.innerHeight - 120);
+            x = Math.random() * (window.innerWidth - tamanhoGato);
+            y = Math.random() * (window.innerHeight - tamanhoGato);
 
             const margem = 30;
-            const dentroHorizontal = x + 120 > rect.left - margem && x < rect.right + margem;
-            const dentroVertical = y + 120 > rect.top - margem && y < rect.bottom + margem;
+            const dentroHorizontal = x + tamanhoGato > rect.left - margem && x < rect.right + margem;
+            const dentroVertical = y + tamanhoGato > rect.top - margem && y < rect.bottom + margem;
 
             if (!(dentroHorizontal && dentroVertical)) {
                 colisao = false;
             }
         }
 
+        // 4. Aplica posição e renderiza
         img.style.left = x + "px";
         img.style.top = y + "px";
         img.style.position = "absolute";
-        img.style.width = "120px"; // Tamanho fixo para os gatinhos
         
         container.appendChild(img);
         
-        // Remove a imagem após 3 segundos (tempo do fade no CSS)
         setTimeout(() => img.remove(), 3000);
-    }, 700); // Cria um novo gatinho a cada 0.7 segundos
+    }, 700); 
+}function gerarGatinhos() {
+    const container = document.getElementById('container-gatinhos');
+    const caixaTexto = document.querySelector('.caixa-texto');
+
+    const linksGatinhos = [
+        'gato1.png', 'gato2.png', 'gato3.png', 'gato4.png', 'gato5.png',
+        'gifgato1.gif', 'gifgato2.gif', 'gifgato3.gif'
+    ];
+
+    setInterval(() => {
+        const img = document.createElement('img');
+        
+        // 1. Sorteia a imagem
+        const indiceSorteado = Math.floor(Math.random() * linksGatinhos.length);
+        img.src = linksGatinhos[indiceSorteado];
+        
+        // 2. Define o tamanho adaptável (Movi para dentro do intervalo)
+        const tamanhoGato = window.innerWidth < 768 ? 80 : 120; 
+        img.style.width = tamanhoGato + "px";
+
+        const rect = caixaTexto.getBoundingClientRect();
+        let x, y;
+        let colisao = true;
+
+        // 3. Lógica da Hitbox
+        while (colisao) {
+            x = Math.random() * (window.innerWidth - tamanhoGato);
+            y = Math.random() * (window.innerHeight - tamanhoGato);
+
+            const margem = 30;
+            const dentroHorizontal = x + tamanhoGato > rect.left - margem && x < rect.right + margem;
+            const dentroVertical = y + tamanhoGato > rect.top - margem && y < rect.bottom + margem;
+
+            if (!(dentroHorizontal && dentroVertical)) {
+                colisao = false;
+            }
+        }
+
+        // 4. Aplica posição e renderiza
+        img.style.left = x + "px";
+        img.style.top = y + "px";
+        img.style.position = "absolute";
+        
+        container.appendChild(img);
+        
+        setTimeout(() => img.remove(), 3000);
+    }, 700); 
 }
 
 // Tempos de surgimento (em milissegundos)
