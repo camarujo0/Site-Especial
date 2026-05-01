@@ -1,0 +1,108 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: black;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+.tela {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    transition: opacity 1s ease-out;
+}
+
+/* Animações de Fade */
+.fade-in {
+    opacity: 0;
+    animation: fadeInAnim 2s forwards;
+}
+
+.text-secundario {
+    font-size: 0.9rem;
+    animation-delay: 2s; /* Aparece depois da primeira */
+}
+
+@keyframes fadeInAnim {
+    to { opacity: 1; }
+}
+
+.fade-out {
+    animation: fadeOutAnim 1s forwards;
+}
+
+@keyframes fadeOutAnim {
+    to { opacity: 0; }
+}
+
+/* Botão Personalizado */
+.btn-custom {
+    padding: 15px 30px;
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    margin-top: 20px;
+}
+
+.btn-custom:hover {
+    background: white;
+    color: black;
+}
+
+.hide { display: none; }
+
+/* Fase 2 - Gatinhos */
+#container-gatinhos img {
+    position: absolute;
+    z-index: 5; /* Atrás da caixa de texto */
+    pointer-events: none; /* Impede que os gatos bloqueiem cliques */
+    animation: aparecerESumir 3s ease-in-out forwards;
+}
+
+@keyframes aparecerESumir {
+    0% { opacity: 0; transform: scale(0.5); }
+    30% { opacity: 1; transform: scale(1); }
+    70% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.8); }
+}
+
+.caixa-texto {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    z-index: 100; /* Garante que fique acima de tudo */
+    position: relative;
+    max-width: 80%; 
+    text-align: center;
+}
+
+.conteudo-centro {
+    display: flex;
+    flex-direction: column; /* Alinha os itens em coluna */
+    align-items: center;    /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    text-align: center;
+    gap: 20px;              /* Espaçamento entre os elementos */
+}
+
+.img-fase1 {
+    width: 150px;           /* Ajuste o tamanho conforme necessário */
+    height: auto;
+    margin: 10px 0;
+}
+
+/* Garante que o botão não "pule" quando aparecer */
+.btn-custom {
+    position: relative;
+    margin-top: 30px;
+}
